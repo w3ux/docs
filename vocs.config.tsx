@@ -6,6 +6,19 @@ export default defineConfig({
     colorScheme: 'dark',
     accentColor: '#f2f2f2',
   },
+  head() {
+    return (
+      <>
+      <script async defer src="https://apisa.polkadot.cloud/latest.js"></script>
+      <noscript
+        ><img
+          src="https://apisa.w3ux.org/noscript.gif"
+          alt=""
+          referrerPolicy="no-referrer-when-downgrade"
+      /></noscript>
+      </>
+    )
+  },
   logoUrl: {
     light: '/svg/logo-light.svg',
     dark: '/svg/logo-dark.svg',
