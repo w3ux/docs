@@ -1,0 +1,80 @@
+import { Callout } from 'vocs/components'
+
+# ExtensionsProvider
+
+A React context provider that discovers available wallet exensions and allows connection to them.
+
+[source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit/src/ExtensionsProvider)
+
+## Usage
+
+ExtensionsProvider allows your app to discover the currently installed web3 extensions, and provides a setter to update their status. 
+
+Wrap your app with ExtensionsProvider to give your components access to the available web extensions:
+
+```tsx
+import { ExtensionsProvider } from '@w3ux/react-connect-kit';
+
+const AppWithProvider = () => (
+  <ExtensionsProvider>
+    <App />
+  </ExtensionsProvider>
+);
+```
+
+Extensions data can then be accessed with the `useExtensions` hook in any wrapped component:
+
+```tsx
+import { useExtensions } from '@w3ux/react-connect-kit';
+
+...
+const { extensions } = useExtensions();
+```
+
+<Callout type="note">
+  `ExtensionsProvider` supports all the web3 wallet extensions listed on the [Extension Assets](/library/extension-assets) page.
+</Callout>
+
+<Callout type="warning">
+  When `React.StrictMode` is used, it should be placed after the `ExtensionsProvider`, or the providers will face issues.
+</Callout>
+
+## Syncing Extensions
+
+Web3 extensions are injected into the `window.injectedWeb3` object, which is an asynchronous process that happens when the window loads. For this reason, `ExtensionsProvider` also provides a `checkingInjectedWeb3` boolean value, that signals whether the initial check for injectedWeb3 is underway.
+
+`checkingInjectedWeb3` will initially be true, and updated to false once `window.injectedWeb3` is present, or if injectedWeb3 is not found after a 5 second timeout.
+
+## Provider Values
+
+#### checkingInjectedWeb3
+`boolean`
+
+Returns a boolean reflecting whether `window.injectedWeb3` is being checked.
+
+#### extensionsStatus
+``Record<string, Extens`ionStatus>``
+
+A key value record of each extension and their status. Empty object by default until `setExtensionStatus` is called.
+
+#### setExtensionStatus
+`(id: string, status: ExtensionStatus): void`
+
+A function that takes an extension id and status, and updates the extensionsStatus record. Accepts values of `installed`, `not_authenticated` and `connected`.
+
+#### removeExtensionStatus
+`(id: string): void`
+
+Removes an extension from the `extensionsStatus` record. This should be called when the extension is not found / not installed.
+
+#### extensionInstalled
+`(id: string): boolean`
+
+A function that takes an extension id checks whether the extension is installed.
+
+#### extensionCanConnect
+`(id: string): boolean`
+
+Checks if the provided extension id can be connected to. Returns false if the extension is not installed or is not connected.
+
+

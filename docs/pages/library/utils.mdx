@@ -1,0 +1,296 @@
+# Utils
+
+A collection of reusable utilities for manipulating data.
+
+[npm](https://www.npmjs.com/package/@w3ux/utils) |&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/utils)
+
+## Install
+
+First, we will install `@w3ux/utils` as a dependency in our project.
+
+:::code-group
+
+```bash [npm]
+npm i @w3ux/utils
+```
+
+```bash [pnpm]
+pnpm i @w3ux/utils
+```
+
+```bash [yarn]
+yarn add @w3ux/utils
+```
+
+```bash [bun]
+bun i @w3ux/utils
+```
+
+:::
+
+
+## Base Utils
+
+A collection of utilities for manipulating data.
+
+### camelize
+
+Converts a string of text to camelCase.
+
+- `@param (string)` string to become camelCase.
+- `@returns (string)` the input string, but camelCased.
+
+```tsx
+camelize("hello_world") // helloWorld
+camelize("hello world") // helloWorld
+camelize("  leadingWhitespace") // leadingWhitespace
+camelize("   multiple   spaces   ") // multipleSpaces
+
+camelize(HeLLo WoRLD) // heLLoWoRld 
+// This is due to the fact that Capital letters identify as "beginning of a word")
+camelize("hello_world") // helloWorld
+camelize("hello world") // helloWorld
+camelize("  leadingWhitespace") // leadingWhitespace
+camelize("   multiple   spaces   ") // multipleSpaces
+```
+
+### ellipsisFn
+
+Receives an address and creates ellipsis on the given string, based on parameters.
+
+- `@param (string)` The string to apply the ellipsis on.
+- `@param (number)` The amount of characters that the ellipsis will be.
+
+```tsx
+const address = "234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7";
+
+// How many characters to show after Ellipsis (placed at the start)
+ellipsisFn(address, 4, "start") // ...ZmY7
+// How many characters to show before Ellipsis (placed on the end)
+ellipsisFn(address, 4, "end") // 234C...
+
+// How many characters to show after Ellipsis (placed at the start)
+ellipsisFn("Some random value", 8, "start");// ...dom value
+// How many characters to show before Ellipsis (placed on the end)
+ellipsisFn("Some random value", 8, "end") // Some ran...
+
+// position defaults to "center"
+ellipsisFn(address, 4) // 234C...ZmY7
+ellipsisFn(address, 10) // 234CHvWmTu...oFaetEZmY7
+
+// amount defaults to 6
+ellipsisFn(address) // 234CHv...tEZmY7
+
+// (fallbacks to minimum, of 4)
+ellipsisFn(address, 2) // 234C...ZmY7
+
+// (fallbacks to maximum acceptable when too large: string.length / 2 - 3)
+ellipsisFn(address, 100) // 234C...ZmY7
+const address = "234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7";
+
+// How many characters to show after Ellipsis (placed at the start)
+ellipsisFn(address, 4, "start") // ...ZmY7
+// How many characters to show before Ellipsis (placed on the end)
+ellipsisFn(address, 4, "end") // 234C...
+
+// How many characters to show after Ellipsis (placed at the start)
+ellipsisFn("Some random value", 8, "start");// ...dom value
+// How many characters to show before Ellipsis (placed on the end)
+ellipsisFn("Some random value", 8, "end") // Some ran...
+
+// position defaults to "center"
+ellipsisFn(address, 4) // 234C...ZmY7
+ellipsisFn(address, 10) // 234CHvWmTu...oFaetEZmY7
+
+// amount defaults to 6
+ellipsisFn(address) // 234CHv...tEZmY7
+
+// (fallbacks to minimum, of 4)
+ellipsisFn(address, 2) // 234C...ZmY7
+
+// (fallbacks to maximum acceptable when too large: string.length / 2 - 3)
+ellipsisFn(address, 100) // 234C...ZmY7
+```
+
+### greaterThanZero
+
+Returns whether a BigNumber is greater than zero.
+
+- `@param (BigNumber)` the input to check against.
+- `@returns (boolean)` the result of the fn.
+
+```tsx
+greaterThanZero(new BigNumber("10")) // true
+greaterThanZero(new BigNumber("0")) // false
+greaterThanZero(new BigNumber("-5")) // false
+greaterThanZero(new BigNumber("999999999999999999999999999")) // true
+greaterThanZero(new BigNumber("-999999999999999999999999999")) // false
+greaterThanZero(new BigNumber("10")) // true
+greaterThanZero(new BigNumber("0")) // false
+greaterThanZero(new BigNumber("-5")) // false
+greaterThanZero(new BigNumber("999999999999999999999999999")) // true
+greaterThanZero(new BigNumber("-999999999999999999999999999")) // false
+```
+
+### isNotZero
+
+Returns whether a BigNumber is zero.
+
+- `@param (BigNumber)` the input to check against.
+- `@returns (boolean)` the result of the fn.
+```
+
+```tsx
+isNotZero(new BigNumber("10")) // true
+isNotZero(new BigNumber("0")) // false
+isNotZero(new BigNumber("-5")) // true
+isNotZero(new BigNumber("999999999999999999999999999")) // true
+isNotZero(new BigNumber("-999999999999999999999999999")) // true
+isNotZero(new BigNumber("10")) // true
+isNotZero(new BigNumber("0")) // false
+isNotZero(new BigNumber("-5")) // true
+isNotZero(new BigNumber("999999999999999999999999999")) // true
+isNotZero(new BigNumber("-999999999999999999999999999")) // true
+```
+
+### minDecimalPlaces
+
+Forces a number to have at least the provided decimal places.
+
+- `@param (string)` string that we want to update the decimal places.
+- `@param (number)` number of decimals to be adjusted.
+
+```tsx
+const val = "10.5";
+const minDecimals = 4;
+fn.minDecimalPlaces(val, minDecimals);// 10.5000
+const val = "10.5";
+const minDecimals = 4;
+fn.minDecimalPlaces(val, minDecimals);// 10.5000
+```
+
+###pageFromUri
+
+Use url variables to load the default components upon the first page visit.
+
+- `@param (string)` the url that we want to get the page from.
+- `@param (string)` fallback string in case the url is wrong or empty.
+- `@returns (string)` the value of the trimmed url.
+
+```tsx
+pageFromUri("/products/detail", "home") // detail
+
+// note the extra space at the end of the pathname
+pageFromUri("/products/detail ", "home") // detail
+pageFromUri("", "home"); // home
+pageFromUri("/categories/", "home") // home
+pageFromUri("/about us", "home") // about us
+pageFromUri("/products/detail#section, "home") // detail#section
+pageFromUri("/products/detail", "home") // detail
+
+// attention on the extra space at the end of the pathname
+pageFromUri("/products/detail ", "home") // detail
+pageFromUri("", "home"); // home
+pageFromUri("/categories/", "home") // home
+pageFromUri("/about us", "home") // about us
+pageFromUri("/products/detail#section, "home") // detail#section
+```
+
+### rmCommas
+
+Removes the commas from a string.
+
+- `@param (string)` the url that we want to get the page from.
+- `@returns (string)` the result of the fn.
+
+```tsx
+const inputValue = "1,000,000";
+const result = fn.rmCommas(inputValue); // 1000000
+const inputValue = "1,000,000";
+const result = fn.rmCommas(inputValue); // 1000000
+```
+
+### shuffle
+
+Shuffle a set of objects.
+
+- `@param (array[object])` an array of objects.
+- `@returns (array[object])` the input array of objects but shuffled.
+
+```tsx
+shuffle([1, 2, 3, 4, 5]) // [2, 5, 1, 3, 4] (or some other shuffled result)
+shuffle([]) // []
+shuffle([42]) // [42]
+```
+
+## Unit Utils
+
+A collection of utilities for manipulating chain units.
+
+### planckToUnit
+
+Converts an on chain balance value in BigNumber planck to a decimal value in token unit. (1 token = 10^units planck).
+
+- `@param (BigNumber)` The Planck in BigNumber.
+- `@param (number)` the units.
+- `@returns (BigNumber)` the decimal value in token unit.
+
+#### Examples:
+
+```tsx
+const inputValue = new BigNumber("10000000");
+const units = 6;
+fn.planckToUnit(inputValue, units); // 10.000000
+
+const inputValue = new BigNumber("10000000");
+const units = 6;
+fn.planckToUnit(inputValue, units); // 10.000000
+```
+
+### transformToBaseUnit
+
+Transforms a given estimated fee value from its current representation to its base unit representation, considering the provided chain decimals. The function is designed to handle cases where the chain decimals are either greater or less than the length of the estimated fee.
+
+- `@param (string)` The estimated fee value that needs to be transformed to its base unit representation.
+- `@param (number)` The number of decimal places used by the blockchain.
+- `@returns (string)` the result of the functions.
+
+#### Examples:
+
+```tsx
+transformToBaseUnit("275002583", 9) // 0.275002583
+transformToBaseUnit("275002583", 20) // 0.0000000000275002583
+transformToBaseUnit("23", 9) // 0.00000023
+transformToBaseUnit("23", 18) // 0.00000000000000023
+transformToBaseUnit((20 * 10 ** 7).toString(), 18) // 0.000000002
+transformToBaseUnit((235 * 10 ** 7).toString(), 9) // 2.35
+transformToBaseUnit("0", 9) //  0
+transformToBaseUnit("0.0000", 20) // 0
+transformToBaseUnit("275002583", 9) // 0.275002583
+transformToBaseUnit("275002583", 20) // 0.0000000000275002583
+transformToBaseUnit("23", 9) // 0.00000023
+transformToBaseUnit("23", 18) // 0.00000000000000023
+transformToBaseUnit((20 * 10 ** 7).toString(), 18) // 0.000000002
+transformToBaseUnit((235 * 10 ** 7).toString(), 9) // 2.35
+transformToBaseUnit("0", 9) //  0
+transformToBaseUnit("0.0000", 20) // 0
+```
+
+### unitToPlanck
+
+Converts a balance in token unit to an equivalent value in planck by applying the chain decimals ποιντ. (1 token = 10^units planck).
+
+- `@param (string)` token balance.
+- `@param (number)` the units.
+- `@returns (BigNumber)` value in planck with applied the chain decimals.
+
+#### Examples
+
+```tsx
+const inputValue = "10";
+const units = 6;
+fn.unitToPlanck(inputValue, units); // 10000000
+const inputValue = "10";
+const units = 6;
+fn.unitToPlanck(inputValue, units); // 10000000
+```

@@ -1,0 +1,19 @@
+# useEffectIgnoreInitial
+
+A `useEffect` hook that ignores the initial render.
+
+[source](https://github.com/w3ux/w3ux-library/blob/main/library/hooks/src/useEffectIgnoreInitial.tsx)
+
+
+## Usage
+
+```tsx
+import { useEffectIgnoreInitial } from '@w3ux/hooks';
+
+...
+
+useEffectIgnoreInitial(() => {
+  console.log('This logic will execute on subsequent renders, but not on the initial render.');
+}, [dependency]);
+
+```

@@ -1,0 +1,141 @@
+import { Callout } from 'vocs/components'
+
+# ExtensionAccountsProvider
+
+Connect to available extensions and subscribe to accounts.
+
+[source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit/src/ExtensionAccountsProvider)
+
+## Requirements
+
+- [`ExtensionsProvider`](/library/react-connect-kit/extensions): Must wrap `ExtensionAccountsProvider` to provide the available extensions.
+
+## Usage
+
+`ExtensionAccountsProvider` provides a simple means of connecting to web3 extensions that implement the `window.injectedWeb3` interface, and subscribes to their accounts. It automatically re-connects to extensions on subsequent visits, and allows dApps to set an active account if found in an extension.
+
+<Callout type="note">
+  This provider prevents the multiple pop-up issue (all available extensions popping up when connecting to extensions) by design. Such behaviour should be treated as an anti-pattern and be avoided.
+</Callout>
+
+<Callout type="note">
+  EVM accounts are not currently supported by `ExtensionAccountsProvider`.
+</Callout>
+
+<Callout type="warning">
+  When React.StrictMode is used inside the Application, it should be placed after the ExtensionsProvider and `ExtensionAccountsProvider`, or the providers will not work;
+</Callout>
+
+Wrap your app with `ExtensionAccountsProvider` and provide the required props. Note that `ExtensionsProvider` is also required, in order to provide the available extensions to connect to. The required props are referenced further down.
+
+```tsx
+import {
+    ExtensionsProvider,
+    ExtensionAccountsProvider,
+  } from '@w3ux/react-connect-kit';
+
+const AppWithProviders = () => {
+
+  // Dapp identifier.
+  const dappName = "My Dapp Name";
+  // Active network, in lower case.
+  const network = "polkadot";
+  // SS58 prefix of the current network.
+  const ss58 = 0;
+  // Active account, if any.
+  const activeAccount = null;
+  // Setter for Dapp active account.
+  const setActiveAccount = (a: string | null) => {
+    setState({ ...state, activeAccount: a });
+  };
+
+  return (
+    <ExtensionsProvider>
+      <ExtensionAccountsProvider
+        dappName={dappName}
+        network={network}
+        ss58={ss58}
+        activeAccount={activeAccount}
+        setActiveAccount={setActiveAccount}
+      >
+      <App />
+    </ExtensionAccountsProvider>
+  );
+);
+```
+
+### Connecting Extensions
+
+With the providers in place, you can call `connectExtensionAccounts` to connect to an extension. The following example attempts to find and connect to Subwallet JS upon a button click.
+
+```tsx
+import {
+    useExtensionAccounts,
+  } from '@w3ux/react-connect-kit';
+
+const ConnectAccounts = () => {
+  const { connectExtensionAccounts } = useExtensionAccounts();
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          if (extension) connectExtensionAccounts('subwallet-js');
+        }}
+      >
+        Connect to Subwallet JS
+      </button>
+      <App />
+    </>
+  );
+);
+```
+
+## Props
+
+#### dappName
+`string`
+
+A Dapp identifier that is provided to the web3 extension(s) being connected to.
+
+#### network
+`string`
+
+The active network, in lower-case.
+
+#### ss58
+`number`
+
+The SS58 prefix of the current network.
+
+_Planned to be derived from network in a future release._
+
+#### activeAccount
+`string | null`
+
+The current active account on your Dapp, if any. `ExtensionAccountsProvider` will automatically connect to this active account, if found, when subscribing to extension account. See the next prop for more details.
+
+#### setActiveAccount
+`(address: string): void`
+
+Provide a setter function to call if the active account is found when subscribing to extension accounts.
+
+
+## Values
+
+#### connectExtensionAccounts
+`(id: string): Promise<boolean>`
+
+Call this function to connect to the provided extension id and subscribe to its accounts.
+
+#### extensionAccounts
+`ExtensionAccount[]`
+
+The list of extension accounts that have been subscribed to.
+
+#### extensionAccountsSynced
+`boolean`
+
+Signals whether extensions are still being connected to and subscribed to. A value of true means that the process is complete.
+

@@ -1,0 +1,68 @@
+# Extension Assets
+
+A list of popular Web3 wallet extensions with metadata and icons. 
+
+[npm](https://www.npmjs.com/package/@w3ux/extension-assets) |&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/extension-assets)
+
+## Introduction
+
+Extension Assets provides both JSX and SVG exports for each supported wallet extension.
+
+Supported Wallet Extensions:
+
+- ChainSafe Snap - [website](https://snaps.metamask.io/snap/npm/chainsafe/polkadot-snap/)
+- Enkrypt - [website](https://www.enkrypt.com/)
+- Fearless Wallet - [website](https://fearlesswallet.io/)
+- Ledger - [website](https://www.ledger.com/)
+- Nova Wallet - [website](https://novawallet.io/)
+- Polkadot JS - [website](https://polkadot.js.org/extension/)
+- Polkadot Vault - [website](https://vault.novasama.io/)
+- PolkaGate - [website](https://polkagate.xyz/)
+- PolkaGate Snap - [website](https://snaps.metamask.io/snap/npm/polkagate/snap/)
+- Subwallet JS - [website](https://www.subwallet.app/)
+- Talisman - [website](https://talisman.xyz/)
+- Wallet Connect (Reown) - [website](https://reown.com)
+
+## Usage
+
+::::steps
+
+### Install
+
+First, we will install `@w3ux/extension-assets` as a dependency in our project.
+
+:::code-group
+
+```bash [npm]
+npm i @w3ux/extension-assets
+```
+
+```bash [pnpm]
+pnpm i @w3ux/extension-assets
+```
+
+```bash [yarn]
+yarn add @w3ux/extension-assets
+```
+
+```bash [bun]
+bun i @w3ux/extension-assets
+```
+
+:::
+
+### Import Assets
+
+Import SVGs or component files in your environment.
+
+__Example__ - Import an SVG a React component in a Vite environment:
+
+```tsx
+import WalletConnectSVG from '@w3ux/extension-assets/WalletConnect.svg?react';
+
+...
+
+<WalletConnectSVG />
+```
+
+::::

@@ -1,0 +1,19 @@
+# useOutsideAlerter
+
+ A hook that calls the passed callback function when you click outside of a specified element.
+
+ [source](https://github.com/w3ux/w3ux-library/blob/main/library/hooks/src/useOutsideAlerter.tsx)
+
+## Usage
+
+```tsx
+import { useOutsideAlerter } from '@w3ux/hooks';
+
+...
+
+// Close a floating menu if clicked outside of its container.
+useOutsideAlerter(menuContainerRef, () => {
+  closeMenu();
+});
+
+```

@@ -1,0 +1,55 @@
+# React Odometer
+
+An odometer effect used for number and balance transitions.
+
+[npm](https://www.npmjs.com/package/@w3ux/react-odometer) |&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/react-odometer)
+
+
+## Usage
+
+Odeometer is a component that can be used to display numbers and balances. It has a smooth animation when its value changes, and adopts a 2-tone design for whole and decimal figures.
+
+Comma formatted numbers and decimals are supported.
+
+::::steps
+
+### Install
+
+First, we will install `@w3ux/react-odometer` as a dependency in our project.
+
+:::code-group
+
+```bash [npm]
+npm i @w3ux/react-odometer
+```
+
+```bash [pnpm]
+pnpm i @w3ux/react-odometer
+```
+
+```bash [yarn]
+yarn add @w3ux/react-odometer
+```
+
+```bash [bun]
+bun i @w3ux/react-odometer
+```
+
+:::
+
+### Import
+
+Odometer is wrapped in a span element, but it is recommended to embed it within a header or paragraph tag so it inherits font size, line height and text styling.
+
+
+```tsx
+import { Odometer } from '@w3ux/react-odometer';
+
+...
+
+<h1>
+  <Odometer value="1,2019,03.456789" />
+</h1>
+```
+
+::::

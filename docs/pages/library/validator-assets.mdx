@@ -1,0 +1,49 @@
+import { Callout } from 'vocs/components'
+
+# Validator Assets
+
+A list of Polkadot validator operators with metadata and icons.
+
+[npm](https://www.npmjs.com/package/@w3ux/validator-assets) |&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/validator-assets)
+
+## Usage
+
+A list of validator operators are available as a `ValidatorCommunity` object, along with each operator's thumbnail icon in SVG format.
+
+<Callout type="note">
+  Validators for Polkadot and Kusama are currently supported.
+</Callout>
+
+::::steps
+
+### Install
+
+First, we will install `@w3ux/validator-assets` as a dependency in our project.
+
+:::code-group
+
+```bash [npm]
+npm i @w3ux/validator-assets
+```
+
+```bash [pnpm]
+pnpm i @w3ux/validator-assets
+```
+
+```bash [yarn]
+yarn add @w3ux/validator-assets
+```
+
+```bash [bun]
+bun i @w3ux/validator-assets
+```
+
+:::
+
+### Import
+
+```tsx
+import { ValidatorCommunity } from '@w3ux/validator-assets';
+```
+
+::::
