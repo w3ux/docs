@@ -6,6 +6,17 @@ export default defineConfig({
     colorScheme: 'dark',
     accentColor: '#f2f2f2',
   },
+  head() {
+    return (
+      <>
+      <meta property="og:type" content="website" />
+      <meta property="og: title" content="w3ux Library" />
+      <meta property="og: image" content="https://w3ux.org/og-image.png" />
+      <meta property="og:url" content="https://w3ux.org" />
+      <meta property="og:description" content="Modular Web3 Utilities for Dapps" />
+      </>
+    )
+  },
   logoUrl: {
     light: '/svg/logo-light.svg',
     dark: '/svg/logo-dark.svg',
