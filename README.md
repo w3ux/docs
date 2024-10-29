@@ -1,1 +1,5 @@
-This is a [Vocs](https://vocs.dev) project bootstrapped with the Vocs CLI.
+![W3uxOG](https://github.com/user-attachments/assets/23f43b81-041a-4554-8c88-29d337b13dcf)
+
+# w3ux Documentation Portal 
+
+**Deployed to https://w3ux.org**.
