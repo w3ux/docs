@@ -9,7 +9,12 @@ export default defineConfig({
   head() {
     return (
       <>
-      <script async defer src="https://apisa.polkadot.cloud/latest.js"></script>
+      <meta property="og:type" content="website" />
+      <meta property="og: title" content="w3ux Library" />
+      <meta property="og: image" content="https://w3ux.org/og-image.png" />
+      <meta property="og:url" content="https://w3ux.org" />
+      <meta property="og:description" content="Modular Web3 Utilities for Dapps" />
+      <script async defer src="https://apisa.w3ux.org/latest.js"></script>
       <noscript
         ><img
           src="https://apisa.w3ux.org/noscript.gif"
