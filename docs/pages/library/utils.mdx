@@ -223,4 +223,10 @@ unitToPlanck(42, 0) // 42n
 unitToPlanck("100000", -6) // 0n
 unitToPlanck("", 8) // 0n
 unitToPlanck("invalid&#l-", 4) // 0n
+
+// Valid when unit value is decimals + 1.
+unitToPlanck("0.0001", 4) // 1n
+
+// Invalid when units are smaller than decimals - returns zero.
+unitToPlanck("0.0001", 3) // 0n
 ```
