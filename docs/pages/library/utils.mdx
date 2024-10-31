@@ -37,8 +37,8 @@ A collection of utilities for manipulating data.
 
 Converts a string of text to camelCase.
 
-- `@param (string)` string to become camelCase.
-- `@returns (string)` the input string, but camelCased.
+- `@param (string) str` The string to become camelCase.
+- `@returns (string)` The input string, but camelCased.
 
 ```tsx
 camelize("hello_world") // helloWorld
@@ -52,8 +52,8 @@ camelize("HeLLo WoRLD") // heLLoWoRld
 
 Receives an address and creates ellipsis on the given string, based on parameters.
 
-- `@param (string)` The string to apply the ellipsis on.
-- `@param (number)` The amount of characters that the ellipsis will be.
+- `@param (string) str` The string to apply the ellipsis on.
+- `@param (number) amount` The amount of characters that the ellipsis will be.
 
 ```tsx
 const address = "234CHvWmTuaVtkJpLS9oxuhFd3HamcEMrfFAPYoFaetEZmY7";
@@ -140,9 +140,9 @@ minDecimalPlaces("invalid", 2) // "0"
 
 Use url variables to load the default components upon the first page visit.
 
-- `@param (string)` the url that we want to get the page from.
-- `@param (string)` fallback string in case the url is wrong or empty.
-- `@returns (string)` the value of the trimmed url.
+- `@param (string) pathname` The url that we want to get the page from.
+- `@param (string) fallback` Fallback string in case the url is wrong or empty.
+- `@returns (string)` The value of the trimmed url.
 
 ```tsx
 pageFromUri("/products/detail", "home") // detail
@@ -152,16 +152,15 @@ pageFromUri("/products/detail ", "home") // detail
 pageFromUri("", "home"); // home
 pageFromUri("/categories/", "home") // home
 pageFromUri("/about us", "home") // about us
-pageFromUri("/products/detail#section, "home") // detail#section
-pageFromUri("/products/detail", "home") // detail
+pageFromUri("/products/detail#section", "home") // detail#section
 ```
 
 ### rmCommas
 
 Removes the commas from a string.
 
-- `@param (string)` the url that we want to get the page from.
-- `@returns (string)` the result of the fn.
+- `@param (string) str` The url that we want to get the page from.
+- `@returns (string)` The result of the fn.
 
 ```tsx
 const result = rmCommas("1,000,000"); // 1000000
@@ -171,8 +170,8 @@ const result = rmCommas("1,000,000"); // 1000000
 
 Shuffle a set of objects.
 
-- `@param (array[object])` an array of objects.
-- `@returns (array[object])` the input array of objects but shuffled.
+- `@param (array[object]) array` An array of objects.
+- `@returns (array[object])` The input array of objects but shuffled.
 
 ```tsx
 shuffle([1, 2, 3, 4, 5]) // [2, 5, 1, 3, 4] (or some other shuffled result)
