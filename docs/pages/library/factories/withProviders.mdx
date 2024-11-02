@@ -1,0 +1,29 @@
+# withProviders
+
+A higher-order component that wraps a specified React component with multiple context providers. Each provider can either be a standalone component or a component with specified props. The first provider in the array becomes the outermost wrapper in the rendered output.
+
+[source](https://github.com/w3ux/w3ux-library/blob/main/library/factories/src/withProviders.tsx)
+
+
+## Usage
+
+```tsx
+import { withProviders } from '@w3ux/factories';
+
+...
+
+return withProviders(
+    // !! Provider order matters.
+    [
+      // Provider components added here.
+      UIProvider, 
+      [APIProvider, { network }],
+      LedgerHardwareProvider,
+    ],
+    // Wrapped component to be wrapped with providers.
+    WrappedComponent
+  );
+};
+
+
+```
