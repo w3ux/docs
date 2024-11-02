@@ -60,6 +60,10 @@ export default defineConfig({
               text: 'useOutsideAlerter',
               link: '/library/hooks/use-outside-alerter',
             },
+            {
+              text: 'useSize',
+              link: '/library/hooks/use-size',
+            },
           ]
         },
         {
