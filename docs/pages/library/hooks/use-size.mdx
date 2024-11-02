@@ -1,0 +1,29 @@
+# useSize
+
+A hook to get the width and height of a specified element, and updates on resize.
+
+[source](https://github.com/w3ux/w3ux-library/blob/main/library/hooks/src/useSize.tsx)
+
+
+## Usage
+
+```tsx
+import { useSize } from '@w3ux/hooks';
+
+...
+
+// Optional: Only update the size when the outer element resizes. 
+// Otherwise, defaults to window resize.
+const outerElement = useRef<HTMLDivElement>(null);
+
+// Define the ref for the element we are watching for size changes.
+const ref = useRef<HTMLDivElement>(null);
+
+// Get the size of the element, and provide an optional throttle 
+// in milliseconds.
+const size = useSize(ref, {
+  outerElement,
+  throttle: 200
+});
+```
+

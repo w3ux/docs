@@ -1,0 +1,30 @@
+# useOnResize
+
+A hook that triggers a callback function when the specified element or the window is resized.
+
+[source](https://github.com/w3ux/w3ux-library/blob/main/library/hooks/src/useOnResize.tsx)
+
+
+## Usage
+
+```tsx
+import { useOnResize } from '@w3ux/hooks';
+
+...
+
+// Ref for the element we are watching for resize.
+const outerElement = useRef<HTMLDivElement>(null);
+
+// Define the callback function.
+const onResize = () => {
+  console.log('This logic will execute when the provided element resizes.');
+};
+
+// Execute callback function on `outerElement` resize, and provide 
+// an optional throttle in milliseconds.
+useOnResize(() => onResize, {
+  outerElement,
+  throttle: 200,
+});
+
+```
