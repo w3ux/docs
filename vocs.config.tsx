@@ -53,8 +53,16 @@ export default defineConfig({
               link: '/library/hooks/use-effect-ignore-initial',
             },
             {
+              text: 'useOnResize',
+              link: '/library/hooks/use-on-resize',
+            },
+            {
               text: 'useOutsideAlerter',
               link: '/library/hooks/use-outside-alerter',
+            },
+            {
+              text: 'useSize',
+              link: '/library/hooks/use-size',
             },
           ]
         },
