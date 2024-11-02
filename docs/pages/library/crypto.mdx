@@ -1,0 +1,44 @@
+# Crypto
+
+Cryptographic utilities for Dapps.
+
+[npm](https://www.npmjs.com/package/@w3ux/crypto) |&nbsp; [source](https://github.com/w3ux/w3ux-library/tree/main/library/crypto)
+
+## Install
+
+First, we will install `@w3ux/crypto` as a dependency in our project.
+
+:::code-group
+
+```bash [npm]
+npm i @w3ux/crypto
+```
+
+```bash [pnpm]
+pnpm i @w3ux/crypto
+```
+
+```bash [yarn]
+yarn add @w3ux/crypto
+```
+
+```bash [bun]
+bun i @w3ux/crypto
+```
+
+:::
+
+### blake2AsU8a
+
+Creates a BLAKE2b hash of the input data and returns it as a `Uint8Array`.
+
+ * `@param {Uint8Array | string | Buffer} data` The input data to hash, as a `string`, `Uint8Array`, or `Buffer`.
+ * `@param (number?) bitLength` - The bit length of the hash output (default 256).
+ * `@returns Uint8Array` The BLAKE2b hash output as a Uint8Array.
+
+```tsx
+const result = blake2AsU8a(new Uint8Array(32));
+```
+
+
+

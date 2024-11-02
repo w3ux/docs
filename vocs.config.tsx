@@ -37,6 +37,10 @@ export default defineConfig({
       collapsed: false,
       items: [
         {
+          text: 'Crypto',
+          link: '/library/crypto',
+        },
+        {
           text: 'Extension Assets',
           link: '/library/extension-assets',
         },
