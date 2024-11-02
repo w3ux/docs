@@ -20,9 +20,11 @@ const onResize = () => {
   console.log('This logic will execute when the provided element resizes.');
 };
 
-// Execute callback function on `outerElement` resize.
+// Execute callback function on `outerElement` resize, and provide 
+// an optional throttle in milliseconds.
 useOnResize(() => onResize, {
   outerElement,
+  throttle: 200,
 });
 
 ```
