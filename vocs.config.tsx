@@ -48,6 +48,20 @@ export default defineConfig({
           link: '/library/extension-assets',
         },
         {
+          text: 'Factories',
+          collapsed: true,
+          items: [
+            {
+              text: "Overview",
+              link: '/library/factories/overview',
+            },
+            {
+              text: "withProviders",
+              link: '/library/factories/withProviders',
+            },
+          ]
+        },
+        {
           text: 'Hooks',
           collapsed: true,
           items: [
