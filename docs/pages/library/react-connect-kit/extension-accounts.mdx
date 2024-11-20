@@ -129,10 +129,10 @@ Provide a setter function to call if the active account is found when subscribin
 
 Call this function to connect to the provided extension id and subscribe to its accounts.
 
-#### extensionAccounts
-`ExtensionAccount[]`
+#### getExtensionAccounts
+`(ss58: number) => ImportedAccount[]`
 
-The list of extension accounts that have been subscribed to.
+Geta a list of available extension accounts, formatted by the provided ss58 prefix.
 
 #### extensionAccountsSynced
 `boolean`
