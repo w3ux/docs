@@ -35,28 +35,17 @@ import {
   } from '@w3ux/react-connect-kit';
 
 const AppWithProviders = () => {
-
-  // Dapp identifier.
+  // Dapp identifier
   const dappName = "My Dapp Name";
-  // Active network, in lower case.
-  const network = "polkadot";
-  // SS58 prefix of the current network.
+
+  // SS58 prefix of the current network
   const ss58 = 0;
-  // Active account, if any.
-  const activeAccount = null;
-  // Setter for Dapp active account.
-  const setActiveAccount = (a: string | null) => {
-    setState({ ...state, activeAccount: a });
-  };
 
   return (
     <ExtensionsProvider>
       <ExtensionAccountsProvider
         dappName={dappName}
-        network={network}
         ss58={ss58}
-        activeAccount={activeAccount}
-        setActiveAccount={setActiveAccount}
       >
       <App />
     </ExtensionAccountsProvider>
@@ -66,7 +55,7 @@ const AppWithProviders = () => {
 
 ### Connecting Extensions
 
-With the providers in place, you can call `connectExtensionAccounts` to connect to an extension. The following example attempts to find and connect to Subwallet JS upon a button click.
+With the providers in place, you can call `connectExtension` to connect to an extension. The following example attempts to find and connect to Subwallet JS upon a button click.
 
 ```tsx
 import {
@@ -74,14 +63,14 @@ import {
   } from '@w3ux/react-connect-kit';
 
 const ConnectAccounts = () => {
-  const { connectExtensionAccounts } = useExtensionAccounts();
+  const { connectExtension } = useExtensionAccounts();
 
   return (
     <>
       <button
         type="button"
         onClick={() => {
-          if (extension) connectExtensionAccounts('subwallet-js');
+          if (extension) connectExtension('subwallet-js');
         }}
       >
         Connect to Subwallet JS
@@ -97,34 +86,20 @@ const ConnectAccounts = () => {
 #### dappName
 `string`
 
-A Dapp identifier that is provided to the web3 extension(s) being connected to.
-
-#### network
-`string`
-
-The active network, in lower-case.
-
 #### ss58
 `number`
 
 The SS58 prefix of the current network.
 
-_Planned to be derived from network in a future release._
-
-#### activeAccount
-`string | null`
-
-The current active account on your Dapp, if any. `ExtensionAccountsProvider` will automatically connect to this active account, if found, when subscribing to extension account. See the next prop for more details.
-
-#### setActiveAccount
-`(address: string): void`
-
-Provide a setter function to call if the active account is found when subscribing to extension accounts.
-
-
 ## Values
 
-#### connectExtensionAccounts
+#### extensionsInitialised
+`string[]`
+
+A record of the extensions that have been initialised along with their status.
+
+
+#### connectExtension
 `(id: string): Promise<boolean>`
 
 Call this function to connect to the provided extension id and subscribe to its accounts.
@@ -134,8 +109,7 @@ Call this function to connect to the provided extension id and subscribe to its 
 
 Geta a list of available extension accounts, formatted by the provided ss58 prefix.
 
-#### extensionAccountsSynced
-`boolean`
+#### extensionsSynced
+`'unsynced' | 'syncing' | 'synced'`
 
-Signals whether extensions are still being connected to and subscribed to. A value of true means that the process is complete.
-
+Signals whether extensions are still being synced upon being initialised.
