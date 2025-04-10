@@ -41,13 +41,13 @@ const { extensions } = useExtensions();
 
 ## Syncing Extensions
 
-Web3 extensions are injected into the `window.injectedWeb3` object, which is an asynchronous process that happens when the window loads. For this reason, `ExtensionsProvider` also provides a `checkingInjectedWeb3` boolean value, that signals whether the initial check for injectedWeb3 is underway.
+Web3 extensions are injected into the `window.injectedWeb3` object, which is an asynchronous process that happens when the window loads. For this reason, `ExtensionsProvider` also provides a `gettingExtensions` boolean value, that signals whether the initial check for injectedWeb3 is underway.
 
-`checkingInjectedWeb3` will initially be true, and updated to false once `window.injectedWeb3` is present, or if injectedWeb3 is not found after a 5 second timeout.
+`gettingExtensions` will initially be true, and updated to false once `window.injectedWeb3` is present, or if injectedWeb3 is not found after a 5 second timeout.
 
 ## Provider Values
 
-#### checkingInjectedWeb3
+#### gettingExtensions
 `boolean`
 
 Returns a boolean reflecting whether `window.injectedWeb3` is being checked.
