@@ -1,43 +1,20 @@
 import { Callout } from 'vocs/components'
 
-# ExtensionsProvider
+# useExtensions
 
-A React context provider that discovers available wallet exensions and allows connection to them.
+A hook that interacts with extensions and exposes their status.
 
-[source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit/src/ExtensionsProvider)
+[source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit/src/Extensions/Connect.tsx)
 
 ## Usage
 
-ExtensionsProvider allows your app to discover the currently installed web3 extensions, and provides a setter to update their status. 
-
-Wrap your app with ExtensionsProvider to give your components access to the available web extensions:
-
-```tsx
-import { ExtensionsProvider } from '@w3ux/react-connect-kit';
-
-const AppWithProvider = () => (
-  <ExtensionsProvider>
-    <App />
-  </ExtensionsProvider>
-);
-```
-
-Extensions data can then be accessed with the `useExtensions` hook in any wrapped component:
+Extensions data can be accessed with the `useExtensions` hook in any component wrapped with `ExtensionsProvider`:
 
 ```tsx
 import { useExtensions } from '@w3ux/react-connect-kit';
 
-...
-const { extensions } = useExtensions();
+const extensions = useExtensions();
 ```
-
-<Callout type="note">
-  `ExtensionsProvider` supports all the web3 wallet extensions listed on the [Extension Assets](/library/extension-assets) page.
-</Callout>
-
-<Callout type="warning">
-  When `React.StrictMode` is used, it should be placed after the `ExtensionsProvider`, or the providers will face issues.
-</Callout>
 
 ## Syncing Extensions
 
@@ -45,7 +22,7 @@ Web3 extensions are injected into the `window.injectedWeb3` object, which is an 
 
 `gettingExtensions` will initially be true, and updated to false once `window.injectedWeb3` is present, or if injectedWeb3 is not found after a 5 second timeout.
 
-## Provider Values
+## Interface
 
 #### gettingExtensions
 `boolean`

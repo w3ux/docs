@@ -1,0 +1,50 @@
+import { Callout } from 'vocs/components'
+
+# ExtensionsProvider
+
+A React context provider that discovers available wallet exensions and allows connection to them and their accounts.
+
+[source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit/src/ExtensionsProvider)
+
+## Usage
+
+Wrap your app with `ExtensionsProvider` and provide the required props. 
+
+```tsx
+import {
+    ExtensionsProvider,
+  } from '@w3ux/react-connect-kit';
+
+const AppWithProviders = () => {
+  // Dapp identifier
+  const dappName = "My Dapp Name";
+
+  // SS58 prefix of the current network
+  const ss58 = 0;
+
+  return (
+    <ExtensionsProvider
+      dappName={dappName}
+      ss58={ss58}
+    >
+      <App />
+    </ExtensionsProvider>
+  );
+);
+```
+
+<Callout type="note">
+  EVM accounts are not currently supported by `ExtensionAccountsProvider`.
+</Callout>
+
+The hooks [`useExtensions`](/library/react-connect-kit/use-extensions) and [`useExtensionAccounts`](/library/react-connect-kit/use-extension-accounts) can now be used to access the extensions and their accounts. 
+
+## Props
+
+#### dappName
+`string`
+
+#### ss58
+`number`
+
+The SS58 prefix of the current network.

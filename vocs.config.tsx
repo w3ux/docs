@@ -94,11 +94,15 @@ export default defineConfig({
             },
             {
               text: 'ExtensionsProvider',
-              link: '/library/react-connect-kit/extensions',
+              link: '/library/react-connect-kit/extensions-provider',
             },
             {
-              text: 'ExtensionAccountsProvider',
-              link: '/library/react-connect-kit/extension-accounts',
+              text: 'useExtensions',
+              link: '/library/react-connect-kit/use-extensions',
+            },
+            {
+              text: 'useExtensionAccounts',
+              link: '/library/react-connect-kit/use-extension-accounts',
             },
           ]
         },
