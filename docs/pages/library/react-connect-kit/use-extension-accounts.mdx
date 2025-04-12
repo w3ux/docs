@@ -1,0 +1,73 @@
+import { Callout } from 'vocs/components'
+
+# useExtensionAccounts
+
+A hook that fetches and subscribes to extension accounts.
+
+[source](https://github.com/w3ux/w3ux-library/tree/main/library/react-connect-kit/src/Extensions/Accounts/index.tsx)
+
+## Usage
+
+`useExtensionAccounts` provides a simple means of fetching and subscribing to web3 extensions accounts in any component wrapped with `ExtensionsProvider`:
+
+It also automatically re-connects to extensions on subsequent visits by referring to saved local
+storage data.
+
+<Callout type="note">
+  This provider prevents the multiple pop-up issue (all available extensions popping up when connecting to extensions) by design. Such behaviour should be treated as an anti-pattern and be avoided.
+</Callout>
+
+<Callout type="warning">
+  When React.StrictMode is used inside the Application, it should be placed after the ExtensionsProvider and `ExtensionAccountsProvider`, or the providers will not work;
+</Callout>
+
+### Connecting Extensions
+
+With the providers in place, you can call `connectExtension` to connect to an extension. The following example attempts to find and connect to Subwallet JS upon a button click.
+
+```tsx
+import {
+    useExtensionAccounts,
+  } from '@w3ux/react-connect-kit';
+
+const ConnectAccounts = () => {
+  const { connectExtension } = useExtensionAccounts();
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          if (extension) connectExtension('subwallet-js');
+        }}
+      >
+        Connect to Subwallet JS
+      </button>
+      <App />
+    </>
+  );
+);
+```
+
+## Interface
+
+#### extensionsInitialised
+`string[]`
+
+A record of the extensions that have been initialised along with their status.
+
+
+#### connectExtension
+`(id: string): Promise<boolean>`
+
+Call this function to connect to the provided extension id and subscribe to its accounts.
+
+#### getExtensionAccounts
+`(ss58: number) => ImportedAccount[]`
+
+Geta a list of available extension accounts, formatted by the provided ss58 prefix.
+
+#### extensionsSynced
+`'unsynced' | 'syncing' | 'synced'`
+
+Signals whether extensions are still being synced upon being initialised.
