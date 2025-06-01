@@ -2,10 +2,6 @@ import { defineConfig } from 'vocs'
 
 export default defineConfig({
   title: 'w3ux Library Documentation',
-  theme: { 
-    colorScheme: 'dark',
-    accentColor: '#f2f2f2',
-  },
   head() {
     return (
       <>
