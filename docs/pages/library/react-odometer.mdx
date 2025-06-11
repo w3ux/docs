@@ -39,13 +39,14 @@ bun i @w3ux/react-odometer
 
 ### Import
 
-Odometer is wrapped in a span element, but it is recommended to embed it within a header or paragraph tag so it inherits font size, line height and text styling.
+- Import the CSS styles once to your project. This is necessary for the odometer to display correctly.
+- Odometer is wrapped in a span element, but it is recommended to embed it within a header or
+paragraph tag so it inherits font size, line height and text styling. 
 
 
 ```tsx
 import { Odometer } from '@w3ux/react-odometer';
-
-...
+import '@w3ux/react-odometer/index.css';
 
 <h1>
   <Odometer value="1,2019,03.456789" />
